@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET</title>
+    <style>
+        div {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点点发请求</button>
+    <div id="result"></div>
+
+    <script>
+        const result = document.querySelector('#result')
+        const btn = document.querySelector('#btn')
+
+
+        btn.addEventListener('click', () => {
+            // 1.创建对象
+            const xhr = new XMLHttpRequest()
+
+            // 2. 初始化 设定请求方法和url
+            xhr.open('GET', 'http://127.0.0.1:5555/server?name=gubao&age=5')
+
+            // 3. 发送
+            xhr.send()
+
+            // 4. 事件绑定 处理服务端返回的结果
+            // onreadystatechange  =>  
+            // 0 未初始化
+            // 1 open方法调用完毕 
+            // 2 send方法调用完毕
+            // 3 服务端返回了部分结果
+            // 4 服务端返回了所有结果
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //处理结果 行 头 空行 体
+
+                        // 1. 响应行
+                        console.log(xhr.status); // 状态码
+                        console.log(xhr.statusText); // 状态字符串
+                        console.log(xhr.getAllResponseHeaders()); // 所有响应头
+                        console.log(xhr.response); // 响应体
+
+                        result.innerHTML = xhr.response
+                    }
+                }
+            }
+
+
+        })
+    </script>
+
+</body>
+
+</html>
