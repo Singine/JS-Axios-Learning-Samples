@@ -54,6 +54,62 @@ app.all('/json',(request,response)=>{
 })
 
 
+
+// 延迟响应 2000
+app.all('/delay',(request,response)=>{
+    // 设置响应头 设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*')
+    
+    // 设置特殊的响应头
+    response.setHeader('Access-Control-Allow-Headers','*')
+
+    // 设置响应体
+    const data = {
+        name:'Gubao',
+        age:5
+    }
+
+    setTimeout(()=>{
+        response.send(JSON.stringify(data))
+    },3000)
+
+})
+
+
+app.all('/axios',(request,response)=>{
+    // 设置响应头 设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*')
+    
+    // 设置特殊的响应头
+    response.setHeader('Access-Control-Allow-Headers','*')
+
+    // 设置响应体
+    const data = {
+        name:'Gubao',
+        age:5
+    }
+    response.send(JSON.stringify(data))
+})
+
+app.all('/fetch',(request,response)=>{
+    // 设置响应头 设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*')
+    
+    // 设置特殊的响应头
+    response.setHeader('Access-Control-Allow-Headers','*')
+
+    // 设置响应体
+    const data = {
+        type:'fetch',
+        name:'Gubao',
+        age:5
+    }
+    response.send(JSON.stringify(data))
+})
+
+
+
+
 // 4. 监听端口
 
 app.listen(5555,()=>{

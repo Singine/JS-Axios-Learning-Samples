@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX JSON</title>
+    <title>AJAX no repeat request</title>
     <style>
         div {
             width: 600px;
@@ -16,43 +16,40 @@
 </head>
 
 <body>
+
+    <button id="btn">点点发请求</button>
+    <button id="cancel">点点取消</button>
     <div id="result"></div>
 
     <script>
+        const btn = document.querySelector('#btn')
+        const cancel = document.querySelector('#cancel')
         const result = document.querySelector('#result')
 
+        let xhr = null
 
-        window.addEventListener('keydown', () => {
-
-            console.log(1);
-
-            const xhr = new XMLHttpRequest()
-
-            // 设置响应体数据类型
-            xhr.responseType = 'json'
+        let isSending = false
 
 
-            xhr.open('GET', 'http://127.0.0.1:5555/json')
-
+        btn.addEventListener('click', () => {
+            if (isSending) xhr.abort()
+            xhr = new XMLHttpRequest()
+            isSending = true
+            xhr.open('GET', 'http://127.0.0.1:5555/delay')
             xhr.send()
-
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    if (xhr.status >= 200 && xhr.status < 300) {
-
-                        // 手动对数据进行转换
-                        // let data = JSON.parse(xhr.response)
-                        // result.innerHTML = data.name
-
-                        // 自动转换
-                        result.innerHTML = xhr.response.name
-
-                    }
+                    isSending = false
                 }
             }
 
 
         })
+
+        cancel.addEventListener('click', () => {
+            xhr.abort()
+        })
+
     </script>
 
 </body>

@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX FETCH</title>
+</head>
+
+<body>
+
+    <button>FETCH</button>
+
+    <script>
+
+        const btn = document.getElementsByTagName('button')[0]
+
+       btn.onclick = ()=>{
+           fetch('http://127.0.0.1:5555/fetch',{
+               method:'POST',
+               headers:{
+                   name:'Gubao!!'
+               },
+               body:'id=0001&key=asdasdw',
+
+           }).then(value => {
+               return value.json()
+           }, reason => {
+               
+           }).then(value => {
+               console.log(value)
+           }, reason => {
+               
+           })
+       }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

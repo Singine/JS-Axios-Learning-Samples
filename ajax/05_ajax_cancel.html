@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX CANCEL</title>
+    <style>
+        div {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn">点点发请求</button>
+    <button id="cancel">点点取消</button>
+    <div id="result"></div>
+
+    <script>
+        const btn = document.querySelector('#btn')
+        const cancel = document.querySelector('#cancel')
+        const result = document.querySelector('#result')
+
+        let xhr = null
+
+        btn.addEventListener('click', () => {
+            xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://127.0.0.1:5555/delay')
+            xhr.send()
+        })
+    
+        cancel.addEventListener('click',()=>{
+            xhr.abort()
+        })
+
+    </script>
+
+</body>
+
+</html>

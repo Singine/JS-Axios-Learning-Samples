@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX AXIOS</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+
+    <button>GET</button>
+    <button>POST</button>
+    <button>AXIOS</button>
+
+    <script>
+
+        const btns = document.getElementsByTagName('button')
+
+        axios.defaults.baseURL = 'http://127.0.0.1:5555'
+
+        btns[0].onclick = () => {
+            axios.get('/axios', {
+                params: {
+                    id: 001,
+                    action: 'bobo!'
+                },
+                headers: {
+                    name: 'Huihui',
+                    age: 1
+                }
+            }).then(value => {
+                console.log(value);
+            }, reason => {
+
+            })
+        }
+
+
+        btns[1].onclick = () => {
+            axios.post('/axios', { msg: 'woxiangnile...' },
+                {
+                    params: {
+                        id: 002,
+                        action: 'baobao!'
+                    },
+                    headers: {
+                        name: 'Yaoyao',
+                        age: 1
+                    },
+                }).then(value => {
+                    console.log(value);
+                }, reason => {
+
+                }
+                )
+        }
+
+
+        btns[2].onclick = () => {
+
+            axios({
+                method:'POST',
+                url: '/axios',
+                params: {
+                    id: 003,
+                    action: 'tietie!'
+                },
+                headers: {
+                    name: 'Gagaga',
+                    age: 0
+                },
+                data: {
+                    msg: '我想咕宝了。。。'
+                }
+            }).then(value => {
+                console.log(value)
+                console.log(value.status)
+            }, reason => {
+                
+            })
+
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

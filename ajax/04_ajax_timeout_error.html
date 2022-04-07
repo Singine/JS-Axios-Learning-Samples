@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX JSON</title>
+    <title>AJAX TIMEOUT ERROR</title>
     <style>
         div {
             width: 600px;
@@ -16,23 +16,34 @@
 </head>
 
 <body>
+
+    <button id="btn">点点发请求</button>
     <div id="result"></div>
 
     <script>
+        const btn = document.querySelector('#btn')
         const result = document.querySelector('#result')
 
 
-        window.addEventListener('keydown', () => {
-
-            console.log(1);
+        btn.addEventListener('click', () => {
 
             const xhr = new XMLHttpRequest()
 
+            // 超时设置
+            xhr.timeout = 2000
+            // 超时回调
+            xhr.ontimeout = function(){
+                alert('请求超时，请稍后重试！')
+            }
+
+            // 网络异常回调
+            xhr.onerror = function(){
+                alert('网络异常，请稍后重试！')
+            }
+
             // 设置响应体数据类型
             xhr.responseType = 'json'
-
-
-            xhr.open('GET', 'http://127.0.0.1:5555/json')
+            xhr.open('GET', 'http://127.0.0.1:5555/delay')
 
             xhr.send()
 
