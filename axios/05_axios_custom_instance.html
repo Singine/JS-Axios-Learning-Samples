@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+
+    <button>GET</button>
+    <button>POST</button>
+
+
+
+
+    <script>
+
+        const btns = document.querySelectorAll('button')
+
+
+        const baby = axios.create({
+            baseURL: 'https://api.apiopen.top',
+            timeout: 2000
+        })
+
+        baby({
+            url: '/getJoke'
+        }).then(res => {
+            console.log(res);
+        })
+
+        btns[0].onclick = () => {
+            baby.get('/getJoke')
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err); 
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

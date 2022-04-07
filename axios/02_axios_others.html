@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+
+    <button>GET</button>
+    <button>POST</button>
+    <button>PUT</button>
+    <button>DELETE</button>
+
+
+
+
+    <script>
+
+        const btns = document.querySelectorAll('button')
+
+
+        axios.defaults.params = {
+            t: Date.now()
+        }
+
+        btns[0].onclick = () => {
+
+            axios.request({
+                method: 'GET',
+                url: 'http://localhost:3000/comments'
+            }).then(value => {
+                console.log(value);
+            }, reason => {
+
+            })
+
+
+        }
+
+
+        btns[1].onclick = () => {
+
+            axios.post('http://localhost:3000/comments', {
+                body: '啵啵咕宝',
+                postId: 1
+            })
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

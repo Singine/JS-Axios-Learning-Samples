@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+
+    <button>GET</button>
+    <button>POST</button>
+    <button>PUT</button>
+    <button>DELETE</button>
+
+
+
+
+    <script>
+
+        const btns = document.querySelectorAll('button')
+
+
+        btns[0].onclick = () => {
+
+            axios({
+                // 请求类型
+                method: 'GET',
+                // url
+                url: 'http://localhost:3000/posts',
+
+            }).then(value => {
+                console.log(value)
+            }, reason => {
+
+            })
+
+        }
+
+
+        btns[1].onclick = () => {
+
+            axios({
+                // 请求类型
+                method: 'POST',
+                // url
+                url: 'http://localhost:3000/posts',
+                // 请求体
+                data: {
+                    title: '想咕宝',
+                    action: 'bobo!'
+                }
+
+            }).then(value => {
+                console.log(value)
+            }, reason => {
+
+            })
+
+        }
+
+
+        btns[2].onclick = () => {
+
+            axios({
+                // 请求类型
+                method: 'PUT',
+                // url
+                url: 'http://localhost:3000/posts/2',
+                // 请求体
+                data: {
+                    title: 'Hi Gubao!',
+                    action: 'Bobo!'
+                }
+
+            }).then(value => {
+                console.log(value)
+            }, reason => {
+
+            })
+
+        }
+
+
+
+        btns[3].onclick = () => {
+
+            axios({
+                // 请求类型
+                method: 'DELETE',
+                // url
+                url: 'http://localhost:3000/posts/2',
+
+            }).then(value => {
+                console.log(value)
+            }, reason => {
+
+            })
+
+        }
+
+
+    </script>
+</body>
+
+</html>

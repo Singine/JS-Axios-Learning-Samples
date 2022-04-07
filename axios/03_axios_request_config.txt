@@ -1,0 +1,66 @@
+
+
+{
+    url:'/home',
+
+    method:'POST',
+
+    baseURL:'https://api.sjyolo.com/',
+
+
+    // 对发送的请求进行预处理 处理完后再发送
+    transformRequest:[
+        function(data,headers){
+            return data
+        }
+    ],
+
+    // 对接受的数据进行预处理
+    transformResponse[
+        function(data){
+            return data
+        }
+    ],
+
+    headers:{
+        'X-Requested-With':'XMLHttpRequest'
+    },
+
+    params:{
+        ID:0001
+    },
+
+    paramsSerializer:function(params){
+
+    },
+
+    data: {
+        firstName: 'Fred'
+    },
+
+    timeout: 1000,
+
+    responseType: 'json',
+
+    xsrfCookieName: 'XSRF-TOKEN',
+
+    // 唯一标识
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+
+    socketPath: null,
+
+    proxy: {
+    host: '127.0.0.1',
+    port: 9000,
+    auth: {
+      username: 'mikeymike',
+      password: 'rapunz3l'
+        }
+    },
+
+    cancelToken: new CancelToken(function (cancel) {
+    })
+
+
+
+}
