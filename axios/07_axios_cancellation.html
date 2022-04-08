@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+
+    <button>SEND</button>
+    <button>CANCEL</button>
+
+
+
+
+    <script>
+
+        const btns = document.querySelectorAll('button')
+
+        let cancel = null
+
+        btns[0].onclick = () => {
+
+            // 检测上一次请求是否已经完成
+            if (cancel !== null) {
+                cancel()
+            }
+
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/posts',
+                cancelToken: new axios.CancelToken((c) => {
+                    cancel = c
+                })
+            }).then(res => {
+                console.log(res.data)
+                cancel = null
+            }).catch(err => {
+                console.error(err);
+            })
+        }
+
+
+        btns[1].onclick = () => {
+            cancel()
+        }
+
+    </script>
+</body>
+
+</html>
